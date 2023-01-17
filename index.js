@@ -32,6 +32,30 @@ router.post('/vehicle', (req, res) => {
     })
 })
 
+router.get('/vehicle/:vehicleId', (req, res) => {
+    Vehicle.findById(req.params.vehicleId).then(data => {
+        res.send(data)
+    }).catch(e => {
+        res.send({error: e})
+    })
+})
+
+router.get('/vehicle/make/:make', (req, res) => {
+    Vehicle.find({ make: req.params.make }).then(data => {
+        res.send(data)
+    }).catch(e => {
+        res.send({error: e})
+    })
+})
+
+router.get('/vehicle/color/:color', (req, res) => {
+    Vehicle.find({ color: req.params.color }).then(data => {
+        res.send(data)
+    }).catch(e => {
+        res.send({error: e})
+    })
+})
+
 app.listen(port)
 
 console.log(`server listening on port ${port}`)
